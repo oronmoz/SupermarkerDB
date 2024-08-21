@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import com.example.supermarket.components.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.supermarket.controllers.ShoppingSessionController" spacing="10" alignment="CENTER">
+    <TabPane fx:id="wizardTabPane">
+        <Tab text="Select Customer" closable="false">
+            <VBox spacing="10">
+                <Label text="Select a Customer"/>
+                <ComboBox fx:id="customerComboBox" promptText="Choose a customer"/>
+                <Button text="Next" onAction="#nextToSupermarketSelection"/>
+            </VBox>
+        </Tab>
+        <Tab text="Select Supermarket" closable="false">
+            <VBox spacing="10">
+                <Label text="Select a Supermarket"/>
+                <ComboBox fx:id="supermarketComboBox" promptText="Choose a supermarket"/>
+                <Button text="Next" onAction="#nextToProductSelection"/>
+            </VBox>
+        </Tab>
+        <Tab text="Add Products" closable="false">
+            <VBox spacing="10">
+                <HBox spacing="10">
+                    <AdvancedSearchBar fx:id="productSearchBar"/>
+                    <Button text="Add to Cart" onAction="#addToCart"/>
+                </HBox>
+                <SortableFilterableTableView fx:id="productTable" VBox.vgrow="ALWAYS"/>
+                <TableView fx:id="cartTable" VBox.vgrow="ALWAYS"/>
+                <Button text="Proceed to Checkout" onAction="#proceedToCheckout"/>
+            </VBox>
+        </Tab>
+        <Tab text="Checkout" closable="false">
+            <VBox spacing="10">
+                <Label text="Order Summary"/>
+                <TableView fx:id="orderSummaryTable" VBox.vgrow="ALWAYS"/>
+                <Label fx:id="totalLabel" text="Total: $0.00"/>
+                <Button text="Complete Purchase" onAction="#completePurchase"/>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

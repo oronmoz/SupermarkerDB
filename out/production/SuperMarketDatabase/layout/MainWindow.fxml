@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.supermarket.controllers.MainWindowController">
+    <top>
+        <VBox>
+            <MenuBar>
+                <menus>
+                    <Menu text="File">
+                        <items>
+                            <Menu text="Import Data">
+                                <items>
+                                    <MenuItem text="Import Supermarkets" onAction="#importSupermarkets"/>
+                                    <MenuItem text="Import Products" onAction="#importProducts"/>
+                                    <MenuItem text="Import Customers" onAction="#importCustomers"/>
+                                </items>
+                            </Menu>
+                            <Menu text="Export Data">
+                                <items>
+                                    <MenuItem text="Export Supermarkets" onAction="#exportSupermarkets"/>
+                                    <MenuItem text="Export Products" onAction="#exportProducts"/>
+                                    <MenuItem text="Export Customers" onAction="#exportCustomers"/>
+                                </items>
+                            </Menu>
+                            <SeparatorMenuItem/>
+                            <MenuItem text="Exit" onAction="#exitApplication"/>
+                        </items>
+                    </Menu>
+                    <Menu text="View">
+                        <items>
+                            <MenuItem fx:id="viewSupermarketsMenuItem" text="Supermarkets"/>
+                            <MenuItem fx:id="viewProductsMenuItem" text="Products"/>
+                            <MenuItem fx:id="viewCustomersMenuItem" text="Customers"/>
+                            <MenuItem fx:id="viewPurchasesMenuItem" text="Purchases"/>
+                            <MenuItem fx:id="viewSuppliersMenuItem" text="Suppliers"/>
+                            <MenuItem fx:id="viewAddressesMenuItem" text="Addresses"/>
+                        </items>
+                    </Menu>
+                    <Menu text="Management">
+                        <items>
+                            <MenuItem text="Supermarket Management" onAction="#showSupermarketManagement"/>
+                            <MenuItem text="Product Management" onAction="#showProductManagement"/>
+                            <MenuItem text="Customer Management" onAction="#showCustomerManagement"/>
+                            <MenuItem text="Supplier Management" onAction="#showSupplierManagement"/>
+                        </items>
+                    </Menu>
+                    <Menu text="Shop">
+                        <items>
+                            <MenuItem text="Start Shopping Session" onAction="#startNewShoppingSession"/>
+                            <MenuItem text="View Active Carts" onAction="#viewActiveCarts"/>
+                            <MenuItem text="Checkout" onAction="#checkout"/>
+                        </items>
+                    </Menu>
+                    <Menu text="Reports">
+                        <items>
+                            <MenuItem text="Sales Reports" onAction="#showSalesReports"/>
+                            <MenuItem text="Inventory Reports" onAction="#showInventoryReports"/>
+                            <MenuItem text="Customer Reports" onAction="#showCustomerReports"/>
+                            <MenuItem text="Supplier Reports" onAction="#showSupplierReports"/>
+                            <MenuItem text="Supermarket Performance" onAction="#showSupermarketPerformance"/>
+                        </items>
+                    </Menu>
+                    <Menu text="Help">
+                        <items>
+                            <MenuItem text="About" onAction="#showAbout"/>
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-background-color: #e0e0e0; -fx-padding: 5;">
+                <Button text="Back" onAction="#goBack"/>
+                <HBox fx:id="breadcrumbBar" spacing="5" alignment="CENTER_LEFT"/>
+            </HBox>
+        </VBox>
+    </top>
+    <left>
+        <VBox spacing="10" style="-fx-background-color: #f0f0f0; -fx-padding: 10;">
+            <Button text="Dashboard" onAction="#showDashboard" maxWidth="Infinity"/>
+            <Button text="New Sale" onAction="#startNewSale" maxWidth="Infinity"/>
+            <Button text="Products" onAction="#showProducts" maxWidth="Infinity"/>
+            <Button text="Reports" onAction="#showReports" maxWidth="Infinity"/>
+
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="contentArea"/>
+    </center>
+    <bottom>
+        <HBox style="-fx-background-color: #f0f0f0; -fx-padding: 5;">
+            <Label fx:id="statusLabel" text="Ready"/>
+        </HBox>
+    </bottom>
+</BorderPane>

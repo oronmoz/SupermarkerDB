@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.supermarket.controllers.DashboardController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <top>
+        <HBox spacing="20" alignment="CENTER">
+            <VBox styleClass="kpi-box" alignment="CENTER">
+                <Label text="Total Sales" styleClass="kpi-label"/>
+                <Label fx:id="totalSalesLabel" styleClass="kpi-value"/>
+            </VBox>
+            <VBox styleClass="kpi-box" alignment="CENTER">
+                <Label text="Total Customers" styleClass="kpi-label"/>
+                <Label fx:id="totalCustomersLabel" styleClass="kpi-value"/>
+            </VBox>
+            <VBox styleClass="kpi-box" alignment="CENTER">
+                <Label text="Total Products" styleClass="kpi-label"/>
+                <Label fx:id="totalProductsLabel" styleClass="kpi-value"/>
+            </VBox>
+            <VBox styleClass="kpi-box" alignment="CENTER">
+                <Label text="Low Stock Items" styleClass="kpi-label"/>
+                <Label fx:id="lowStockItemsLabel" styleClass="kpi-value"/>
+            </VBox>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox spacing="20">
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Sales Trend" styleClass="section-header"/>
+                <LineChart fx:id="salesTrendChart">
+                    <xAxis>
+                        <CategoryAxis label="Date"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Sales"/>
+                    </yAxis>
+                </LineChart>
+            </VBox>
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Top Selling Products" styleClass="section-header"/>
+                <PieChart fx:id="topProductsChart"/>
+            </VBox>
+        </HBox>
+    </center>
+
+    <right>
+        <VBox spacing="10" prefWidth="250">
+            <Label text="Recent Activities" styleClass="section-header"/>
+            <ListView fx:id="recentActivitiesList" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </right>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Add Product" onAction="#addNewProduct"/>
+            <Button text="Add Customer" onAction="#addNewCustomer"/>
+            <Button text="Generate Report" onAction="#generateReport"/>
+        </HBox>
+    </bottom>
+</BorderPane>

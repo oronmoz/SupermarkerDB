@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import com.example.supermarket.components.SortableFilterableTableView?>
+<?import com.example.supermarket.components.AdvancedSearchBar?>
+
+<VBox xmlns:fx="http://javafx.com/fxml">
+    <Label text="Supermarkets" style="-fx-font-size: 20; -fx-padding: 10;"/>
+    <AdvancedSearchBar fx:id="searchBar"/>
+    <SortableFilterableTableView fx:id="supermarketsTable" VBox.vgrow="ALWAYS"/>
+</VBox>
