@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209e1473-7de4-4746-97d7-192a917e6738" name="Changes" comment="Bug Fixes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/MainWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/MainWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/ReportingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/ReportingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/ShoppingCartDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/ShoppingCartDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/ReportingInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/ReportingInterface.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/SalesReport.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/SalesReport.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="209e1473-7de4-4746-97d7-192a917e6738" name="Changes" comment="Partially implemented Dashboard" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -221,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724279896697</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Partially implemented Dashboard">
+      <option name="closed" value="true" />
+      <created>1724284122086</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1724284122086</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +241,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Improved overall functionality" />
     <MESSAGE value="Bug Fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug Fixes" />
+    <MESSAGE value="Partially implemented Dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Partially implemented Dashboard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
