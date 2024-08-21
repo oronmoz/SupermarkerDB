@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="209e1473-7de4-4746-97d7-192a917e6738" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SupermarketDB.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/SupermarketApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/components/AdvancedSearchBar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/components/ReportSelectionTreeView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/components/ReusableFormLayout.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/components/SortableFilterableTableView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/AddressViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/DashboardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/MainWindowController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/ReportingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/ShoppingSessionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/SupermarketManagementController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/SuppliersController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/DatabaseConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/DatabaseManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/AddressDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/CustomerDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/ProductDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/ProductSupermarketDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/ShoppingCartDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/SupermarketCustomerDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/SupermarketDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/SupplierDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/AddressDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/CustomerDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/ProductDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/ProductSupermarketDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/ShoppingCartDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/SupermarketCustomerDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/SupermarketDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/SupplierDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/AddressQueries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/CustomerQueries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/ProductQueries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/ProductSupermarketQueries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/ShoppingCartQueries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/SupermarketCustomerQueries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/SupermarketQueries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/SupplierQueries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/managers/SearchManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/managers/SupermarketDialogCreator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/managers/SupermarketFileHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/managers/ViewManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/CustomerSupermarket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/ProductSupermarket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/ShoppingCart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/ShoppingItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/Supermarket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/Supplier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/AddressService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/FileOperationsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/ShoppingCartService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/SupermarketService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/SupplierService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/ActivityLogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/AddressServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/CustomerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/FileOperationsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/ProductServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/ShoppingCartServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/SupermarketServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/SupplierServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/utils/InsufficientStockException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/views/Dashboard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/views/MainWindow.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/views/ReportingInterface.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/views/SalesReport.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/views/ShoppingSessionWizard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/views/SupermarketManagement.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/AddressView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/Dashboard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/MainWindow.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/ReportingInterface.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/SalesReport.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/ShoppingSessionWizard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/SupermarketManagement.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/SupermarketsView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/SupplierView.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../SupermarkerDB\exportToHTML" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaFXApplication" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="FxmlFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="customMavenHome" value="C:\Users\oronm\AppData\Roaming\apache\apache-maven-3.9.8" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="#JAVA_HOME" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="proportion" value="0.2352132" />
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2kQgzaQ4oK4kioMK25bs6dlG988" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Main.executor": "Run",
+    "Application.SupermarketApp.executor": "Run",
+    "Application.example.Application.SupermarketApp.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/GitRepos/SuperMarketDatabase/SuperMarketDatabase/SuperMarketDatabase/src/main/java/com/example/supermarket",
+    "last_opened_file_path": "C:/GitRepos/SupermarkerDB",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/GitRepos/SuperMarketDatabase/SuperMarketDatabase/SuperMarketDatabase/src/main/java/com/example/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\GitRepos\SupermarkerDB\src\main\resources\com\example\views" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\GitRepos\SupermarkerDB\src\main\resources\views" />
+      <recent name="C:\GitRepos\SupermarkerDB\src\main\resources\com\example" />
+      <recent name="C:\GitRepos\SupermarkerDB\src\main\resources\com\example\supermarket" />
+      <recent name="C:\GitRepos\SupermarkerDB\src\main\resources\com\example\views" />
+      <recent name="C:\GitRepos\SuperMarketDatabase\SuperMarketDatabase\SuperMarketDatabase\src\main\java" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example" />
+      <recent name="com.example.supermarket" />
+      <recent name="" />
+      <recent name="com.example.Application.dao" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.supermarket.database.dao" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.example.Main" />
+      <module name="SuperMarketDatabase" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value=".*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SupermarketApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.supermarket.SupermarketApp" />
+      <module name="SuperMarketDatabase" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="example.Application.SupermarketApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="example.Application.SupermarketApp" />
+      <module name="SuperMarketDatabase" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="example.Application.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.example.Application.SupermarketApp" />
+      <item itemvalue="Application.SupermarketApp" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.SupermarketApp" />
+        <item itemvalue="Application.example.Application.SupermarketApp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="209e1473-7de4-4746-97d7-192a917e6738" name="Changes" comment="" />
+      <created>1723221479930</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723221479930</updated>
+      <workItem from="1723221480996" duration="1134000" />
+      <workItem from="1723222633627" duration="2129000" />
+      <workItem from="1723227023220" duration="2688000" />
+      <workItem from="1723233554099" duration="10278000" />
+      <workItem from="1723246891515" duration="1142000" />
+      <workItem from="1723248049532" duration="44000" />
+      <workItem from="1723248095819" duration="58000" />
+      <workItem from="1723248161296" duration="9438000" />
+      <workItem from="1723258203798" duration="3388000" />
+      <workItem from="1723298736654" duration="28724000" />
+      <workItem from="1723376682678" duration="45111000" />
+      <workItem from="1723427639866" duration="24000" />
+      <workItem from="1723427673569" duration="154000" />
+      <workItem from="1723428039275" duration="5834000" />
+      <workItem from="1723435832301" duration="2861000" />
+      <workItem from="1723473839844" duration="39838000" />
+      <workItem from="1723581711916" duration="21490000" />
+      <workItem from="1724268425322" duration="90000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalStateException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/SupermarketManagementController.java</url>
+          <line>417</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="params.length" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

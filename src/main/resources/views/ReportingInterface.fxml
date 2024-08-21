@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.CategoryAxis?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.supermarket.controllers.ReportingController">
+
+    <left>
+        <VBox fx:id="reportSelectionContainer" spacing="10">
+
+            <Label text="Report Selection" style="-fx-font-weight: bold;"/>
+
+        </VBox>
+
+    </left>
+    <center>
+
+
+        <VBox spacing="10">
+
+            <HBox spacing="10">
+                <Button text="Export to PDF" onAction="#exportToPDF"/>
+                <Button text="Export to CSV" onAction="#exportToCSV"/>
+
+            </HBox>
+            <LineChart fx:id="salesTrendChart">
+                <xAxis>
+                    <CategoryAxis label="Date"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Sales"/>
+                </yAxis>
+            </LineChart>
+            <StackPane fx:id="reportContentArea" VBox.vgrow="ALWAYS"/>
+        </VBox>
+
+    </center>
+
+</BorderPane>

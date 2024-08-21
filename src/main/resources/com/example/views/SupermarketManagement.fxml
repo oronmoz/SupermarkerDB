@@ -1,0 +1,48 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--<?import javafx.scene.layout.*?>-->
+<!--<?import javafx.scene.control.*?>-->
+<!--<?import com.example.supermarket.components.*?>-->
+
+<!--<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.supermarket.controllers.SupermarketManagementController">-->
+<!--    <TabPane>-->
+<!--        <Tab text="Supermarkets">-->
+<!--            <VBox spacing="10">-->
+<!--                <HBox spacing="10">-->
+<!--                    <Button text="Add New Supermarket" onAction="#addSupermarket"/>-->
+<!--                    <Button text="Edit Selected Supermarket" onAction="#editSupermarket"/>-->
+<!--                    <Button text="Delete Selected Supermarket" onAction="#deleteSupermarket"/>-->
+<!--                    <Button text="Add Product to Supermarket" onAction="#addProductToSupermarket"/>-->
+<!--                    <Button text="Add Customer to Supermarket" onAction="#addCustomerToSupermarket"/>-->
+<!--                </HBox>-->
+<!--                <AdvancedSearchBar fx:id="supermarketSearchBar"/>-->
+<!--                <SortableFilterableTableView fx:id="supermarketsTable" VBox.vgrow="ALWAYS"/>-->
+<!--                <ReusableFormLayout fx:id="supermarketForm"/>-->
+<!--            </VBox>-->
+<!--        </Tab>-->
+<!--        <Tab text="Products">-->
+<!--            <VBox spacing="10">-->
+<!--                <HBox spacing="10">-->
+<!--                    <Button text="Add New Product" onAction="#addProduct"/>-->
+<!--                    <Button text="Edit Selected Product" onAction="#editProduct"/>-->
+<!--                    <Button text="Delete Selected Product" onAction="#deleteProduct"/>-->
+<!--                </HBox>-->
+<!--                <AdvancedSearchBar fx:id="productSearchBar"/>-->
+<!--                <SortableFilterableTableView fx:id="productsTable" VBox.vgrow="ALWAYS"/>-->
+<!--                <ReusableFormLayout fx:id="productForm"/>-->
+<!--            </VBox>-->
+<!--        </Tab>-->
+<!--        <Tab text="Customers">-->
+<!--            <VBox spacing="10">-->
+<!--                <HBox spacing="10">-->
+<!--                    <Button text="Add New Customer" onAction="#addCustomer"/>-->
+<!--                    <Button text="Edit Selected Customer" onAction="#editCustomer"/>-->
+<!--                    <Button text="Delete Selected Customer" onAction="#deleteCustomer"/>-->
+<!--                </HBox>-->
+<!--                <AdvancedSearchBar fx:id="customerSearchBar"/>-->
+<!--                <SortableFilterableTableView fx:id="customersTable" VBox.vgrow="ALWAYS"/>-->
+<!--                <ReusableFormLayout fx:id="customerForm"/>-->
+<!--            </VBox>-->
+<!--        </Tab>-->
+<!--    </TabPane>-->
+<!--</VBox>-->

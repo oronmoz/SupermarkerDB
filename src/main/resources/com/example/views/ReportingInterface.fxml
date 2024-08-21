@@ -1,0 +1,13 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--<?import javafx.scene.layout.*?>-->
+<!--<?import javafx.scene.control.*?>-->
+<!--<?import com.example.supermarket.components.ReportSelectionTreeView?>-->
+
+<!--<SplitPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.supermarket.controllers.ReportingController">-->
+<!--    <VBox fx:id="reportSelectionContainer" spacing="10">-->
+<!--        <Label text="Report Selection" style="-fx-font-weight: bold;"/>-->
+<!--        <ReportSelectionTreeView fx:id="reportSelectionTree" VBox.vgrow="ALWAYS"/>-->
+<!--    </VBox>-->
+<!--    <StackPane fx:id="reportContentArea"/>-->
+<!--</SplitPane>-->

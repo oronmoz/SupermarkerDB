@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import com.example.supermarket.components.SortableFilterableTableView?>
+<?import com.example.supermarket.components.AdvancedSearchBar?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.supermarket.controllers.AddressViewController" spacing="10">
+    <Label text="Address View" style="-fx-font-size: 20; -fx-padding: 10;"/>
+    <AdvancedSearchBar fx:id="addressSearchBar"/>
+    <SortableFilterableTableView fx:id="addressesTable" VBox.vgrow="ALWAYS"/>
+</VBox>
