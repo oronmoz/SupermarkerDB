@@ -10,7 +10,7 @@
     <HBox spacing="10">
         <DatePicker fx:id="startDatePicker" promptText="Start Date"/>
         <DatePicker fx:id="endDatePicker" promptText="End Date"/>
-        <Button text="Export to PDF" onAction="#exportToPDF"/>
+        <Button text="Export to PDF" onAction="#exportToTXT"/>
         <Button text="Export to CSV" onAction="#exportToCSV"/>
     </HBox>
     <TabPane>

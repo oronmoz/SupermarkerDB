@@ -320,9 +320,19 @@ public class MainWindowController{
 
     @FXML
     private void showDashboard() {
-        loadView("Dashboard.fxml", "Dashboard");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Dashboard.fxml"));
+            Parent dashboardView = loader.load();
+            DashboardController dashboardController = loader.getController();
+            dashboardController.initServices(supermarketService, productService, customerService,
+                    shoppingCartService, supplierService, fileHandler);
+            contentArea.getChildren().setAll(dashboardView);
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load dashboard: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
-
+    
     @FXML
     private void showProducts() {
         loadView("SupermarketManagement.fxml", "Supermarket Management");

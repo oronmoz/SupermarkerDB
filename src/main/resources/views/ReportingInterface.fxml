@@ -22,7 +22,7 @@
         <VBox spacing="10">
 
             <HBox spacing="10">
-                <Button text="Export to PDF" onAction="#exportToPDF"/>
+                <Button text="Export to TXT" onAction="#exportToTXT"/>
                 <Button text="Export to CSV" onAction="#exportToCSV"/>
 
             </HBox>

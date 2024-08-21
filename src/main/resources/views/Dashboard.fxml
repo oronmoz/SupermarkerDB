@@ -6,28 +6,22 @@
 <?import javafx.geometry.Insets?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.supermarket.controllers.DashboardController">
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
-
-
-
     <top>
         <HBox spacing="20" alignment="CENTER">
-            <VBox styleClass="kpi-box" alignment="CENTER" style="-fx-background-color: lightgray;">
-                <Label text="Total Sales" styleClass="kpi-label"/>
-                <Label fx:id="totalSalesLabel" />
+            <VBox alignment="CENTER">
+                <Label text="Total Sales"/>
+                <Label fx:id="totalSalesLabel"/>
             </VBox>
-            <VBox styleClass="kpi-box" alignment="CENTER" style="-fx-background-color: lightgray;">
-                <Label text="Total Customers" styleClass="kpi-label"/>
-                <Label fx:id="customerCountLabel" />
+            <VBox alignment="CENTER">
+                <Label text="Total Customers"/>
+                <Label fx:id="customerCountLabel"/>
             </VBox>
-            <VBox styleClass="kpi-box" alignment="CENTER" style="-fx-background-color: lightgray;">
-            <Label text="Total Products" styleClass="kpi-label"/>
-                <Label fx:id="productCountLabel" />
+            <VBox alignment="CENTER">
+                <Label text="Total Products"/>
+                <Label fx:id="productCountLabel"/>
             </VBox>
-            <VBox styleClass="kpi-box" alignment="CENTER" style="-fx-background-color: lightgray;">
-            <Label text="Low Stock Items" styleClass="kpi-label"/>
+            <VBox alignment="CENTER">
+                <Label text="Low Stock Items"/>
                 <Label fx:id="lowStockItemsLabel"/>
             </VBox>
         </HBox>
@@ -35,9 +29,9 @@
 
     <center>
         <HBox spacing="20">
-            <VBox spacing="10" HBox.hgrow="ALWAYS">
-                <Label text="Sales Trend" styleClass="section-header"/>
-                <LineChart fx:id="salesTrendChart" prefHeight="300.0" prefWidth="400.0">
+            <VBox HBox.hgrow="ALWAYS">
+                <Label text="Sales Trend"/>
+                <LineChart fx:id="salesTrendChart">
                     <xAxis>
                         <CategoryAxis label="Date"/>
                     </xAxis>
@@ -46,17 +40,17 @@
                     </yAxis>
                 </LineChart>
             </VBox>
-            <VBox spacing="10" HBox.hgrow="ALWAYS">
-                <Label text="Top Selling Products" styleClass="section-header"/>
-                <PieChart fx:id="topProductsChart" />
+            <VBox HBox.hgrow="ALWAYS">
+                <Label text="Top Selling Products"/>
+                <PieChart fx:id="topProductsChart"/>
             </VBox>
         </HBox>
     </center>
 
     <right>
-        <VBox spacing="10" prefWidth="250">
-            <Label text="Recent Activities" styleClass="section-header"/>
-            <ListView fx:id="recentActivitiesList" />
+        <VBox spacing="10">
+            <Label text="Recent Activities"/>
+            <ListView fx:id="recentActivitiesList" VBox.vgrow="ALWAYS"/>
         </VBox>
     </right>
 </BorderPane>

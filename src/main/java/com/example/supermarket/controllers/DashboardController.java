@@ -39,10 +39,10 @@ public class DashboardController implements Initializable {
     @FXML private Label customerCountLabel;
     @FXML private Label productCountLabel;
     @FXML private Label lowStockItemsLabel;
-    @FXML private Label supermarketCountLabel;
     @FXML private ListView<String> recentActivitiesList;
     @FXML private LineChart<String, Number> salesTrendChart;
     @FXML private PieChart topProductsChart;
+    @FXML private Label supermarketCountLabel;
     @FXML private VBox addressManagementSection;
     @FXML private AdvancedSearchBar addressSearchBar;
     @FXML private SortableFilterableTableView<Address> addressesTable;
@@ -63,7 +63,29 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LOGGER.info("DashboardController initialized");
+
+        // Initialize charts
+        salesTrendChart.setAnimated(false);
+        topProductsChart.setAnimated(false);
+
+        // Set some initial text to verify labels are working
+        totalSalesLabel.setText("Loading...");
+        customerCountLabel.setText("Loading...");
+        productCountLabel.setText("Loading...");
+        lowStockItemsLabel.setText("Loading...");
+
+        // Call refreshDashboard after a short delay to ensure JavaFX is ready
+        Platform.runLater(() -> {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            refreshDashboard();
+        });
     }
+
+
 
     public void initServices(SupermarketService supermarketService, ProductService productService,
                              CustomerService customerService, ShoppingCartService shoppingCartService,
@@ -107,6 +129,7 @@ public class DashboardController implements Initializable {
                 }, "update total sales");
                 updateComponent(() -> updateCustomerCount(customers.size()), "update customer count");
                 updateComponent(() -> updateProductCount(products.size()), "update product count");
+                updateComponent(() -> updateLowStockItems(products), "low stock product count");
                 updateComponent(() -> {
                     try {
                         updateRecentActivities(purchases);
@@ -115,18 +138,10 @@ public class DashboardController implements Initializable {
                     }
                 }, "update recent activities");
                 updateComponent(() -> {
-                    try {
-                        updateSalesTrendChart(purchases);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+                    updateSalesTrendChart(purchases);
                 }, "update sales trend chart");
                 updateComponent(() -> {
-                    try {
-                        updateTopProductsChart(purchases);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
+                    updateTopProductsChart(purchases);
                 }, "update top products chart");
 
                 forceLayoutRefresh();
@@ -164,6 +179,7 @@ public class DashboardController implements Initializable {
         salesTrendChart.layout();
         topProductsChart.layout();
         recentActivitiesList.layout();
+        lowStockItemsLabel.layout();
 
         Scene scene = totalSalesLabel.getScene();
         if (scene != null) {
@@ -209,6 +225,23 @@ public class DashboardController implements Initializable {
         supermarketCountLabel.setText(String.valueOf(count));
     }
 
+    private void updateLowStockItems(List<Product> products) {
+        long lowStockCount = products.stream()
+                .filter(product -> {
+                    try {
+                        return productService.getTotalCountForProduct(product.getId()) < 10; // Assuming 10 is the threshold
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                })
+                .count();
+
+        Platform.runLater(() -> {
+            lowStockItemsLabel.setText(lowStockCount == 0 ? "None" : String.valueOf(lowStockCount));
+        });
+    }
+
     private void updateRecentActivities(List<ShoppingCart> purchases) throws SQLException {
         ObservableList<String> activities = FXCollections.observableArrayList();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -226,17 +259,15 @@ public class DashboardController implements Initializable {
         LOGGER.info("Recent activities list updated with " + activities.size() + " items");
     }
 
-    private void updateSalesTrendChart(List<ShoppingCart> purchases) throws SQLException {
+    private void updateSalesTrendChart(List<ShoppingCart> purchases) {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Daily Sales");
 
-        Map<LocalDate, BigDecimal> dailySales = new HashMap<>();
-
-        for (ShoppingCart cart : purchases) {
-            LocalDate date = cart.getCreatedAt().toLocalDate();
-            BigDecimal total = shoppingCartService.getCartTotal(cart.getId());
-            dailySales.merge(date, total, BigDecimal::add);
-        }
+        Map<LocalDate, BigDecimal> dailySales = purchases.stream()
+                .collect(Collectors.groupingBy(
+                        cart -> cart.getCreatedAt().toLocalDate(),
+                        Collectors.reducing(BigDecimal.ZERO, ShoppingCart::getAllTotalPrices, BigDecimal::add)
+                ));
 
         dailySales.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
@@ -245,23 +276,22 @@ public class DashboardController implements Initializable {
                     LOGGER.info("Added data point to sales chart: Date=" + entry.getKey() + ", Sales=" + entry.getValue());
                 });
 
-        salesTrendChart.getData().clear();
-        salesTrendChart.getData().add(series);
-        LOGGER.info("Sales trend chart updated with " + series.getData().size() + " data points");
+        Platform.runLater(() -> {
+            salesTrendChart.getData().clear();
+            salesTrendChart.getData().add(series);
+            LOGGER.info("Sales trend chart updated with " + series.getData().size() + " data points");
+        });
     }
 
-
-    private void updateTopProductsChart(List<ShoppingCart> purchases) throws SQLException {
-        Map<String, BigDecimal> productSales = new HashMap<>();
-
-        for (ShoppingCart cart : purchases) {
-            List<ShoppingItem> items = shoppingCartService.getItemsByCartId(cart.getId());
-            for (ShoppingItem item : items) {
-                String productName = item.getProductName() != null ? item.getProductName() : item.getBarcode();
-                BigDecimal itemTotal = item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity()));
-                productSales.merge(productName, itemTotal, BigDecimal::add);
-            }
-        }
+    private void updateTopProductsChart(List<ShoppingCart> purchases) {
+        Map<String, BigDecimal> productSales = purchases.stream()
+                .flatMap(cart -> cart.getItems().stream())
+                .collect(Collectors.groupingBy(
+                        ShoppingItem::getProductName,
+                        Collectors.reducing(BigDecimal.ZERO,
+                                item -> item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())),
+                                BigDecimal::add)
+                ));
 
         LOGGER.info("Product sales map: " + productSales);
 
@@ -274,8 +304,10 @@ public class DashboardController implements Initializable {
                     LOGGER.info("Added product to chart: " + entry.getKey() + " - " + entry.getValue());
                 });
 
-        topProductsChart.setData(pieChartData);
-        LOGGER.info("Top products chart updated with " + pieChartData.size() + " products");
+        Platform.runLater(() -> {
+            topProductsChart.setData(pieChartData);
+            LOGGER.info("Top products chart updated with " + pieChartData.size() + " products");
+        });
     }
 
 

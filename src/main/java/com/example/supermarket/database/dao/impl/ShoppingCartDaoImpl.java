@@ -137,6 +137,29 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
         return cart;
     }
 
+    public List<ShoppingCart> getFullAll() throws SQLException {
+        List<ShoppingCart> carts = new ArrayList<>();
+        String query = "SELECT * FROM shopping_carts";
+        try (Statement stmt = dbManager.getConnection().createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                ShoppingCart cart = extractShoppingCartFromResultSet(rs);
+                cart.setItems(getItemsByCartId(cart.getId()));
+                carts.add(cart);
+            }
+        }
+        return carts;
+    }
+
+    private ShoppingCart extractFullShoppingCartFromResultSet(ResultSet rs) throws SQLException {
+        ShoppingCart cart = new ShoppingCart();
+        cart.setId(rs.getInt("id"));
+        cart.setCustomerId(rs.getInt("customer_id"));
+        cart.setSupermarketId(rs.getInt("supermarket_id"));
+        cart.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+        return cart;
+    }
+
     @Override
     public void updateItemQuantity(int cartId, int itemId, int newQuantity) throws SQLException {
         dbManager.executeUpdate(ShoppingCartQueries.UPDATE_ITEM_QUANTITY, newQuantity, cartId, itemId);

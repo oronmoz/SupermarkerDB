@@ -8,21 +8,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -288,16 +285,16 @@ public class ReportingController implements Initializable {
     }
 
     @FXML
-    private void exportToPDF() {
-        System.out.println("Exporting to PDF");
+    private void exportToTXT() {
+        System.out.println("Exporting to TXT");
         if (currentReportData == null || currentReportTitle == null) {
             showAlert("No report data", "Please generate a report before exporting.");
             return;
         }
 
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save PDF Report");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+        fileChooser.setTitle("Save TX Report");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TXT Files", "*.txt"));
         File file = fileChooser.showSaveDialog(primaryStage);
 
         if (file != null) {
@@ -309,9 +306,9 @@ public class ReportingController implements Initializable {
                     writer.println(item.toString());
                 }
 
-                showAlert("error","Report exported to PDF successfully.");
+                showAlert("error","Report exported to TXT successfully.");
             } catch (IOException e) {
-                showAlert("error","Error exporting report to PDF: " + e.getMessage());
+                showAlert("error","Error exporting report to TXT: " + e.getMessage());
             }
         }
     }
@@ -322,35 +319,112 @@ public class ReportingController implements Initializable {
             showAlert("No report data", "Please generate a report before exporting.");
             return;
         }
-        if (fileHandler == null) {
-            showAlert("Export error", "File handler is not initialized.");
-            return;
-        }
 
-        List<String[]> csvData = new ArrayList<>();
-        csvData.add(new String[]{"Date", "Total Sales"});
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save CSV Report");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        File file = fileChooser.showSaveDialog(primaryStage);
 
-        Map<LocalDate, BigDecimal> salesByDate = new HashMap<>();
+        if (file != null) {
+            try (CSVPrinter csvPrinter = new CSVPrinter(new FileWriter(file), CSVFormat.DEFAULT)) {
+                // Write the report title
+                csvPrinter.printRecord(currentReportTitle);
+                csvPrinter.println(); // Add an empty line after the title
 
-        try {
-            for (Object item : currentReportData) {
-                if (item instanceof ShoppingCart) {
-                    ShoppingCart cart = (ShoppingCart) item;
-                    LocalDate date = cart.getCreatedAt().toLocalDate();
-                    BigDecimal total = shoppingCartService.getCartTotal(cart.getId());
-                    System.out.println("Cart " + cart.getId() + " total: " + total);
-                    salesByDate.merge(date, total, BigDecimal::add);
+                // Write headers
+                csvPrinter.printRecord((Object[]) getReportHeaders());
+
+                // Write data
+                for (Object item : currentReportData) {
+                    csvPrinter.printRecord((Object[]) getReportRowData(item));
                 }
-            }
 
-            for (Map.Entry<LocalDate, BigDecimal> entry : salesByDate.entrySet()) {
-                csvData.add(new String[]{entry.getKey().toString(), entry.getValue().toString()});
+                showAlert("Success", "Report exported to CSV successfully.");
+            } catch (IOException | SQLException e) {
+                showAlert("Error", "Error exporting report to CSV: " + e.getMessage());
+                e.printStackTrace();
             }
+        }
+    }
 
-            fileHandler.exportToCSV(csvData, currentReportTitle + ".csv", primaryStage);
+    private String[] getReportHeaders() {
+        switch (currentReportTitle) {
+            case "Daily Sales Report":
+            case "Monthly Sales Report":
+            case "Annual Sales Report":
+                return new String[]{"Date", "Total Sales"};
+            case "Inventory Report":
+            case "Current Stock Report":
+            case "Low Stock Alert Report":
+                return new String[]{"Product Name", "Barcode", "Type", "Stock"};
+            case "Customer Report":
+            case "Top Customers":
+                return new String[]{"Customer Name", "Total Spend", "Shop Times"};
+            case "Supplier Report":
+            case "Supplier Product Count":
+                return new String[]{"Supplier Name", "Product Count"};
+            case "Supermarket Performance":
+                return new String[]{"Supermarket Name", "Total Sales", "Customer Count"};
+            default:
+                return new String[]{"Column 1", "Column 2"};
+        }
+    }
+
+    private String[] getReportRowData(Object item) throws SQLException {
+        if (item instanceof ShoppingCart) {
+            ShoppingCart cart = (ShoppingCart) item;
+            return new String[]{
+                    cart.getCreatedAt().toLocalDate().toString(),
+                    cart.getTotalPrice().toString()
+            };
+        } else if (item instanceof Product) {
+            Product product = (Product) item;
+            return new String[]{
+                    product.getName(),
+                    product.getBarcode(),
+                    product.getType().toString(),
+                    String.valueOf(getProductStock(product))
+            };
+        } else if (item instanceof Customer) {
+            Customer customer = (Customer) item;
+            return new String[]{
+                    customer.getName(),
+                    String.valueOf(getCustomerTotalSpend(customer)),
+                    String.valueOf(getCustomerShopTimes(customer))
+            };
+        } else if (item instanceof Supplier) {
+            Supplier supplier = (Supplier) item;
+            return new String[]{
+                    supplier.getName(),
+                    String.valueOf(getSupplierProductCount(supplier))
+            };
+        } else if (item instanceof Supermarket) {
+            Supermarket supermarket = (Supermarket) item;
+            return new String[]{
+                    supermarket.getName(),
+                    String.valueOf(getSupermarketTotalSales(supermarket)),
+                    String.valueOf(getSupermarketCustomerCount(supermarket))
+            };
+        }
+        return new String[]{"Unknown", "Unknown"};
+    }
+
+
+    private int getProductStock(Product product) {
+        try {
+            return productService.getTotalCountForProduct(product.getId());
         } catch (SQLException e) {
-            showAlert("Export error", "Error calculating cart totals: " + e.getMessage());
             e.printStackTrace();
+            return 0;
+        }
+    }
+
+    private int getSupplierProductCount(Supplier supplier) {
+        try {
+            return productService.getProductsBySupplier(supplier.getSupplierId()).size();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 
