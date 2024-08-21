@@ -12,6 +12,9 @@ public interface ShoppingCartService {
     ShoppingCart getCartByCustomerAndSupermarket(int customerId, int supermarketId);
     List<ShoppingCart> getAll() throws SQLException;
     List<ShoppingCart> getShoppingCartsBySupermarketId(int supermarketId) throws SQLException;
+
+    List<ShoppingItem> getItemsByCartId(int cartId) throws SQLException;
+
     void checkout(int customerId, int supermarketId) throws SQLException;
     void deleteCart(int cartId) throws SQLException;
     void saveCart(ShoppingCart cart) throws SQLException;

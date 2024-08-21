@@ -82,7 +82,6 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
                     rs.getString("product_name"),
                     new BigDecimal(rs.getString("price")),
                     rs.getInt("quantity")
-
             );
             items.add(item);
         }

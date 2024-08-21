@@ -30,6 +30,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class DashboardController implements Initializable {
@@ -44,6 +46,7 @@ public class DashboardController implements Initializable {
     @FXML private VBox addressManagementSection;
     @FXML private AdvancedSearchBar addressSearchBar;
     @FXML private SortableFilterableTableView<Address> addressesTable;
+    private static final Logger LOGGER = Logger.getLogger(DashboardController.class.getName());
 
     private AddressService addressService;
     private ObservableList<Address> addresses;
@@ -59,11 +62,13 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        LOGGER.info("DashboardController initialized");
     }
 
     public void initServices(SupermarketService supermarketService, ProductService productService,
                              CustomerService customerService, ShoppingCartService shoppingCartService,
                              SupplierService supplierService, SupermarketFileHandler fileHandler) {
+        LOGGER.info("Initializing services in DashboardController");
         this.supermarketService = supermarketService;
         this.productService = productService;
         this.customerService = customerService;
@@ -73,135 +78,204 @@ public class DashboardController implements Initializable {
         refreshDashboard();
     }
 
+
     public void refreshDashboard() {
+        LOGGER.info("Refreshing dashboard");
+
         if (shoppingCartService == null || customerService == null || productService == null) {
+            LOGGER.warning("One or more services are null. Cannot refresh dashboard.");
             return;
         }
 
         try {
+            LOGGER.info("Fetching data for dashboard");
             List<ShoppingCart> purchases = shoppingCartService.getAll();
             List<Customer> customers = customerService.getAll();
             List<Product> products = productService.getAllProducts();
 
+            LOGGER.info("Purchases: " + purchases.size() + ", Customers: " + customers.size() + ", Products: " + products.size());
+
             Platform.runLater(() -> {
-                updateTotalSales(purchases);
-                updateCustomerCount(customers.size());
-                updateProductCount(products.size());
-                updateRecentActivities(purchases);
-                updateSalesTrendChart(purchases);
-                updateTopProductsChart(purchases);
+                applyStyles();
 
-                // Force a layout pass
-                totalSalesLabel.getParent().layout();
-                salesTrendChart.layout();
-                topProductsChart.layout();
+                updateComponent(() -> {
+                    try {
+                        updateTotalSales(purchases);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }, "update total sales");
+                updateComponent(() -> updateCustomerCount(customers.size()), "update customer count");
+                updateComponent(() -> updateProductCount(products.size()), "update product count");
+                updateComponent(() -> {
+                    try {
+                        updateRecentActivities(purchases);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }, "update recent activities");
+                updateComponent(() -> {
+                    try {
+                        updateSalesTrendChart(purchases);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }, "update sales trend chart");
+                updateComponent(() -> {
+                    try {
+                        updateTopProductsChart(purchases);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }, "update top products chart");
 
+                forceLayoutRefresh();
+                logComponentStates();
+
+                LOGGER.info("Dashboard refresh completed");
             });
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Error refreshing dashboard", e);
+            showAlert("Error", "Failed to refresh dashboard: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
 
+    private void updateComponent(Runnable updateAction, String componentName) {
+        try {
+            updateAction.run();
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "Error updating " + componentName, e);
+            showAlert("Error", "Failed to " + componentName + ": " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
 
+    void applyStyles() {
+        totalSalesLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: black;");
+        customerCountLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: black;");
+        productCountLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: black;");
+        recentActivitiesList.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
+        salesTrendChart.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
+        topProductsChart.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
+    }
 
-    private void updateTotalSales(List<ShoppingCart> purchases) {
-        BigDecimal totalSales = BigDecimal.ZERO;
-        try {
-            for (ShoppingCart cart : purchases) {
-                BigDecimal cartTotal = shoppingCartService.getCartTotal(cart.getId());
-                totalSales = totalSales.add(cartTotal);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+    private void forceLayoutRefresh() {
+        totalSalesLabel.getParent().layout();
+        salesTrendChart.layout();
+        topProductsChart.layout();
+        recentActivitiesList.layout();
 
+        Scene scene = totalSalesLabel.getScene();
+        if (scene != null) {
+            scene.getWindow().sizeToScene();
         }
-        final String totalSalesString = String.format("$%.2f", totalSales);
-        totalSalesLabel.setText(totalSalesString);
+    }
 
+    private void logComponentStates() {
+        LOGGER.info("Total Sales Label Text: " + totalSalesLabel.getText());
+        LOGGER.info("Customer Count Label Text: " + customerCountLabel.getText());
+        LOGGER.info("Product Count Label Text: " + productCountLabel.getText());
+        LOGGER.info("Recent Activities List Items: " + recentActivitiesList.getItems().size());
+        LOGGER.info("Sales Trend Chart Data Points: " + (salesTrendChart.getData().isEmpty() ? 0 : salesTrendChart.getData().get(0).getData().size()));
+        LOGGER.info("Top Products Chart Data Points: " + topProductsChart.getData().size());
+    }
+
+
+    private void updateTotalSales(List<ShoppingCart> purchases) throws SQLException {
+        BigDecimal totalSales = BigDecimal.ZERO;
+        for (ShoppingCart cart : purchases) {
+            BigDecimal cartTotal = shoppingCartService.getCartTotal(cart.getId());
+            totalSales = totalSales.add(cartTotal);
+        }
+        String totalSalesString = String.format("$%.2f", totalSales);
+        totalSalesLabel.setText(totalSalesString);
+        LOGGER.info("Total sales label text: " + totalSalesString);
     }
 
     private void updateCustomerCount(int count) {
+        LOGGER.info("Updating customer count: " + count);
         customerCountLabel.setText(String.valueOf(count));
-
+        LOGGER.info("Customer count label text: " + customerCountLabel.getText());
     }
 
     private void updateProductCount(int count) {
+        LOGGER.info("Updating product count: " + count);
         productCountLabel.setText(String.valueOf(count));
-
+        LOGGER.info("Product count label text: " + productCountLabel.getText());
     }
+
 
     private void updateSupermarketCount(int count) {
         supermarketCountLabel.setText(String.valueOf(count));
     }
 
-    private void updateRecentActivities(List<ShoppingCart> purchases) {
+    private void updateRecentActivities(List<ShoppingCart> purchases) throws SQLException {
         ObservableList<String> activities = FXCollections.observableArrayList();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         for (ShoppingCart purchase : purchases.subList(0, Math.min(10, purchases.size()))) {
             LocalDateTime purchaseDate = purchase.getCreatedAt();
             String formattedDate = purchaseDate.format(formatter);
-            activities.add(String.format("Purchase of $%.2f on %s", purchase.getTotalPrice(), formattedDate));
+            BigDecimal total = shoppingCartService.getCartTotal(purchase.getId());
+            String activity = String.format("Purchase of $%.2f on %s", total, formattedDate);
+            activities.add(activity);
+            LOGGER.info("Added activity: " + activity);
         }
 
         recentActivitiesList.setItems(activities);
+        LOGGER.info("Recent activities list updated with " + activities.size() + " items");
     }
 
-    private void updateSalesTrendChart(List<ShoppingCart> purchases) {
+    private void updateSalesTrendChart(List<ShoppingCart> purchases) throws SQLException {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Daily Sales");
 
         Map<LocalDate, BigDecimal> dailySales = new HashMap<>();
 
-        try {
-            for (ShoppingCart cart : purchases) {
-                LocalDate date = cart.getCreatedAt().toLocalDate();
-                BigDecimal total = shoppingCartService.getCartTotal(cart.getId());
-                dailySales.merge(date, total, BigDecimal::add);
-            }
-
-            dailySales.entrySet().stream()
-                    .sorted(Map.Entry.comparingByKey())
-                    .forEach(entry -> {
-                        double salesAmount = entry.getValue().doubleValue();
-                        series.getData().add(new XYChart.Data<>(entry.getKey().toString(), salesAmount));
-                    });
-
-            salesTrendChart.getData().clear();
-            salesTrendChart.getData().add(series);
-
-            // Force layout update
-            salesTrendChart.layout();
-            salesTrendChart.setAnimated(false);
-            salesTrendChart.setAnimated(true);
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-
+        for (ShoppingCart cart : purchases) {
+            LocalDate date = cart.getCreatedAt().toLocalDate();
+            BigDecimal total = shoppingCartService.getCartTotal(cart.getId());
+            dailySales.merge(date, total, BigDecimal::add);
         }
+
+        dailySales.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEach(entry -> {
+                    series.getData().add(new XYChart.Data<>(entry.getKey().toString(), entry.getValue().doubleValue()));
+                    LOGGER.info("Added data point to sales chart: Date=" + entry.getKey() + ", Sales=" + entry.getValue());
+                });
+
+        salesTrendChart.getData().clear();
+        salesTrendChart.getData().add(series);
+        LOGGER.info("Sales trend chart updated with " + series.getData().size() + " data points");
     }
 
 
-    private void updateTopProductsChart(List<ShoppingCart> purchases) {
-        Map<String, BigDecimal> productSales = purchases.stream()
-                .flatMap(cart -> cart.getItems().stream())
-                .collect(Collectors.groupingBy(
-                        ShoppingItem::getProductName,
-                        Collectors.reducing(
-                                BigDecimal.ZERO,
-                                item -> item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())),
-                                BigDecimal::add
-                        )
-                ));
+    private void updateTopProductsChart(List<ShoppingCart> purchases) throws SQLException {
+        Map<String, BigDecimal> productSales = new HashMap<>();
+
+        for (ShoppingCart cart : purchases) {
+            List<ShoppingItem> items = shoppingCartService.getItemsByCartId(cart.getId());
+            for (ShoppingItem item : items) {
+                String productName = item.getProductName() != null ? item.getProductName() : item.getBarcode();
+                BigDecimal itemTotal = item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity()));
+                productSales.merge(productName, itemTotal, BigDecimal::add);
+            }
+        }
+
+        LOGGER.info("Product sales map: " + productSales);
+
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
         productSales.entrySet().stream()
                 .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
                 .limit(5)
-                .forEach(entry -> pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue().toBigInteger().doubleValue())));
+                .forEach(entry -> {
+                    pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue().doubleValue()));
+                    LOGGER.info("Added product to chart: " + entry.getKey() + " - " + entry.getValue());
+                });
 
         topProductsChart.setData(pieChartData);
+        LOGGER.info("Top products chart updated with " + pieChartData.size() + " products");
     }
 
 

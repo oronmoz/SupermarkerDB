@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public class ShoppingCart {
     private int id;
@@ -24,8 +25,6 @@ public class ShoppingCart {
         this.totalPrice = new BigDecimal("0.00") ;
     }
 
-    // Existing getters and setters...
-
 
     public int getId() {
         return id;
@@ -43,8 +42,17 @@ public class ShoppingCart {
         this.createdAt = createdAt;
     }
 
-    public void addItem(ShoppingItem item) {
-        this.items.add(item);
+    public void addItem(ShoppingItem newItem) {
+        Optional<ShoppingItem> existingItem = items.stream()
+                .filter(item -> item.getBarcode().equals(newItem.getBarcode()))
+                .findFirst();
+
+        if (existingItem.isPresent()) {
+            ShoppingItem item = existingItem.get();
+            item.setQuantity(item.getQuantity() + newItem.getQuantity());
+        } else {
+            items.add(newItem);
+        }
         updateTotalPrice();
     }
 
@@ -61,10 +69,18 @@ public class ShoppingCart {
         return totalPrice;
     }
 
-    private void updateTotalPrice() {
+    public void updateTotalPrice() {
         this.totalPrice = items.stream()
                 .map(item -> item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getAllTotalPrices(){
+        BigDecimal total = items.stream()
+                .map(item -> item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println("ShoppingCart " + id + " total price: " + total);
+        return total;
     }
 
     @Override

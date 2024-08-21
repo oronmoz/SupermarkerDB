@@ -14,21 +14,21 @@
 
     <top>
         <HBox spacing="20" alignment="CENTER">
-            <VBox styleClass="kpi-box" alignment="CENTER">
+            <VBox styleClass="kpi-box" alignment="CENTER" style="-fx-background-color: lightgray;">
                 <Label text="Total Sales" styleClass="kpi-label"/>
-                <Label fx:id="totalSalesLabel" styleClass="kpi-value"/>
+                <Label fx:id="totalSalesLabel" />
             </VBox>
-            <VBox styleClass="kpi-box" alignment="CENTER">
+            <VBox styleClass="kpi-box" alignment="CENTER" style="-fx-background-color: lightgray;">
                 <Label text="Total Customers" styleClass="kpi-label"/>
-                <Label fx:id="customerCountLabel" styleClass="kpi-value"/>
+                <Label fx:id="customerCountLabel" />
             </VBox>
-            <VBox styleClass="kpi-box" alignment="CENTER">
-                <Label text="Total Products" styleClass="kpi-label"/>
-                <Label fx:id="productCountLabel" styleClass="kpi-value"/>
+            <VBox styleClass="kpi-box" alignment="CENTER" style="-fx-background-color: lightgray;">
+            <Label text="Total Products" styleClass="kpi-label"/>
+                <Label fx:id="productCountLabel" />
             </VBox>
-            <VBox styleClass="kpi-box" alignment="CENTER">
-                <Label text="Low Stock Items" styleClass="kpi-label"/>
-                <Label fx:id="lowStockItemsLabel" styleClass="kpi-value"/>
+            <VBox styleClass="kpi-box" alignment="CENTER" style="-fx-background-color: lightgray;">
+            <Label text="Low Stock Items" styleClass="kpi-label"/>
+                <Label fx:id="lowStockItemsLabel"/>
             </VBox>
         </HBox>
     </top>
@@ -48,7 +48,7 @@
             </VBox>
             <VBox spacing="10" HBox.hgrow="ALWAYS">
                 <Label text="Top Selling Products" styleClass="section-header"/>
-                <PieChart fx:id="topProductsChart"/>
+                <PieChart fx:id="topProductsChart" />
             </VBox>
         </HBox>
     </center>
@@ -56,7 +56,7 @@
     <right>
         <VBox spacing="10" prefWidth="250">
             <Label text="Recent Activities" styleClass="section-header"/>
-            <ListView fx:id="recentActivitiesList" VBox.vgrow="ALWAYS"/>
+            <ListView fx:id="recentActivitiesList" />
         </VBox>
     </right>
 </BorderPane>

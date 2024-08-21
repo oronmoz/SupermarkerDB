@@ -85,7 +85,8 @@ public class ProductDaoImpl implements ProductDao {
                 product.getType().toString(),
                 product.getPrice(),
                 product.getSupplierId(),
-                product.getId());  // Changed from product.getBarcode() to product.getId()
+                product.getBarcode(),
+                product.getId());
     }
 
     @Override

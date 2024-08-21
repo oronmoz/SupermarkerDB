@@ -4,100 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209e1473-7de4-4746-97d7-192a917e6738" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SupermarketDB.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/SupermarketApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/components/AdvancedSearchBar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/components/ReportSelectionTreeView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/components/ReusableFormLayout.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/components/SortableFilterableTableView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/AddressViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/DashboardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/MainWindowController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/ReportingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/ShoppingSessionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/SupermarketManagementController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/SuppliersController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/DatabaseConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/DatabaseManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/AddressDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/CustomerDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/ProductDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/ProductSupermarketDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/ShoppingCartDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/SupermarketCustomerDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/SupermarketDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/SupplierDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/AddressDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/CustomerDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/ProductDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/ProductSupermarketDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/ShoppingCartDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/SupermarketCustomerDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/SupermarketDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/SupplierDaoImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/AddressQueries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/CustomerQueries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/ProductQueries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/ProductSupermarketQueries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/ShoppingCartQueries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/SupermarketCustomerQueries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/SupermarketQueries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/SupplierQueries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/managers/SearchManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/managers/SupermarketDialogCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/managers/SupermarketFileHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/managers/ViewManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/Address.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/CustomerSupermarket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/ProductSupermarket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/ShoppingCart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/ShoppingItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/Supermarket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/Supplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/AddressService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/CustomerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/FileOperationsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/ShoppingCartService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/SupermarketService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/SupplierService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/ActivityLogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/AddressServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/CustomerServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/FileOperationsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/ProductServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/ShoppingCartServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/SupermarketServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/SupplierServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/utils/InsufficientStockException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/views/Dashboard.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/views/MainWindow.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/views/ReportingInterface.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/views/SalesReport.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/views/ShoppingSessionWizard.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/views/SupermarketManagement.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/AddressView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/Dashboard.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/MainWindow.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/ReportingInterface.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/SalesReport.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/ShoppingSessionWizard.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/SupermarketManagement.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/SupermarketsView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/SupplierView.fxml" afterDir="false" />
+    <list default="true" id="209e1473-7de4-4746-97d7-192a917e6738" name="Changes" comment="Improved overall functionality">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/ShoppingSessionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/ShoppingSessionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/SupermarketManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/controllers/SupermarketManagementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/ProductDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/ProductDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/ShoppingCartDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/dao/impl/ShoppingCartDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/ProductQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/ProductQueries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/ShoppingCartQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/database/queriesmanager/ShoppingCartQueries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/models/ShoppingCart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/ShoppingCartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/ShoppingCartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/ShoppingCartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/supermarket/services/impl/ShoppingCartServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Dashboard.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,13 +203,43 @@
       <workItem from="1723581711916" duration="21490000" />
       <workItem from="1724268425322" duration="90000" />
     </task>
+    <task id="LOCAL-00001" summary="Improved overall functionality">
+      <option name="closed" value="true" />
+      <created>1724274983953</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1724274983953</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Improved overall functionality">
+      <option name="closed" value="true" />
+      <created>1724274990480</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1724274990480</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Improved overall functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved overall functionality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -4,12 +4,10 @@ import com.example.supermarket.database.dao.ProductDao;
 import com.example.supermarket.database.dao.ProductSupermarketDao;
 import com.example.supermarket.database.dao.SupermarketDao;
 import com.example.supermarket.models.Product;
-import com.example.supermarket.models.Supermarket;
 import com.example.supermarket.services.ProductService;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
@@ -42,6 +40,18 @@ public class ProductServiceImpl implements ProductService {
         productDao.update(product);
     }
 
+    @Override
+    public void addOrUpdateProductInSupermarket(int productId, int supermarketId, int quantity) throws SQLException {
+        int currentStock = productSupermarketDao.getStock(productId, supermarketId);
+        if (currentStock > 0) {
+            // Product already exists, update the stock
+            int newStock = currentStock + quantity;
+            productSupermarketDao.updateStock(productId, supermarketId, newStock);
+        } else {
+            // Product doesn't exist, add it
+            productSupermarketDao.addProductToSupermarket(productId, supermarketId, quantity);
+        }
+    }
 
     @Override
     public void addProductToSupermarket(int productId, int supermarketId, int initialStock) throws SQLException {

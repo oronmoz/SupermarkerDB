@@ -30,6 +30,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         }
     }
 
+    @Override
+    public List<ShoppingItem> getItemsByCartId(int cartId) throws SQLException {
+        return shoppingCartDao.getItemsByCartId(cartId);
+    }
+
 
     @Override
     public void checkout(int customerId, int supermarketId) throws SQLException {

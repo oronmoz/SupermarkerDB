@@ -10,6 +10,9 @@ public interface ProductService {
     List<Product> getAllProducts() throws SQLException;
     Product saveProduct(Product product) throws SQLException;
     void updateProduct(Product product) throws SQLException;
+
+    void addOrUpdateProductInSupermarket(int productId, int supermarketId, int quantity) throws SQLException;
+
     void addProductToSupermarket(int productId, int supermarketId, int initialStock) throws SQLException;
     List<Product> getProductsBySupermarket(int supermarketId) throws SQLException;
     int getTotalCountForProduct(int productId) throws SQLException;

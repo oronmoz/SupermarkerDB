@@ -23,7 +23,7 @@ public class ProductQueries {
             "SELECT * FROM products WHERE barcode = ?";
 
     public static final String UPDATE_PRODUCT =
-            "UPDATE products SET name = ?, type = ?, price = ?, supplier_id = ? WHERE id = ?";
+            "UPDATE products SET name = ?, type = ?, price = ?, supplier_id = ?, barcode = ? WHERE id = ?";
 
     public static final String DELETE_PRODUCT =
             "DELETE FROM products WHERE id = ?";

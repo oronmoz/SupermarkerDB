@@ -28,7 +28,10 @@ public class ShoppingCartQueries {
             "SELECT * FROM shopping_carts WHERE supermarket_id = ? ORDER BY created_at DESC";
 
     public static final String SELECT_ITEMS_BY_CART_ID =
-            "SELECT * FROM shopping_items WHERE cart_id = ?";
+            "SELECT si.id, si.cart_id, si.product_barcode, p.name as product_name, si.price, si.quantity " +
+                    "FROM shopping_items si " +
+                    "LEFT JOIN products p ON si.product_barcode = p.barcode " +
+                    "WHERE si.cart_id = ?";
 
     public static final String DELETE_CART =
             "DELETE FROM shopping_carts WHERE id = ?";

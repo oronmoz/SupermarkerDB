@@ -18,6 +18,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -149,7 +150,20 @@ public class ShoppingSessionController implements Initializable {
         TableColumn<Product, String> priceColumn = new TableColumn<>("Price");
         priceColumn.setCellValueFactory(cellData -> new SimpleStringProperty(String.format("%.2f", cellData.getValue().getPrice())));
 
-        productTable.getColumns().addAll(nameColumn, barcodeColumn, priceColumn);
+        TableColumn<Product, Number> stockColumn = new TableColumn<>("Stock");
+        stockColumn.setCellValueFactory(cellData -> {
+            try {
+                Supermarket selectedSupermarket = supermarketComboBox.getValue();
+                if (selectedSupermarket != null) {
+                    return new SimpleIntegerProperty(supermarketService.getProductStock(cellData.getValue().getId(), selectedSupermarket.getId()));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return new SimpleIntegerProperty(0);
+        });
+
+        productTable.getColumns().addAll(nameColumn, barcodeColumn, priceColumn, stockColumn);
     }
 
     private void setupCartTable() {
@@ -226,32 +240,66 @@ public class ShoppingSessionController implements Initializable {
     private void addToCart() {
         Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
         if (selectedProduct != null && currentCart != null) {
-            int quantity = showQuantityDialog();
-            if (quantity > 0) {
-                try {
-                    int currentStock = supermarketService.getProductStock(selectedProduct.getId(), currentCart.getSupermarketId());
-                    if (quantity > currentStock) {
-                        showAlert("Error: Not enough stock. Available: " + currentStock);
-                        return;
-                    }
+            try {
+                int currentStock = supermarketService.getProductStock(selectedProduct.getId(), currentCart.getSupermarketId());
+                int currentQuantityInCart = getCurrentQuantityInCart(selectedProduct.getBarcode());
+                int availableQuantity = currentStock - currentQuantityInCart;
 
-                    ShoppingItem item = new ShoppingItem(0, currentCart.getId(), selectedProduct.getBarcode(),
-                            selectedProduct.getName(), selectedProduct.getPrice(), quantity);
-                    currentCart.addItem(item);
-                    updateCartTable();
-                } catch (SQLException e) {
-                    showAlert("Error adding item to cart: " + e.getMessage());
+                if (availableQuantity <= 0) {
+                    showAlert("Error: This product is out of stock.");
+                    return;
                 }
+
+                int quantityToAdd = showQuantityDialog(availableQuantity);
+                if (quantityToAdd > 0) {
+                    ShoppingItem existingItem = findExistingCartItem(selectedProduct.getBarcode());
+                    if (existingItem != null) {
+                        existingItem.setQuantity(existingItem.getQuantity() + quantityToAdd);
+                    } else {
+                        ShoppingItem newItem = new ShoppingItem(0, currentCart.getId(), selectedProduct.getBarcode(),
+                                selectedProduct.getName(), selectedProduct.getPrice(), quantityToAdd);
+                        currentCart.addItem(newItem);
+                    }
+                    updateCartTable();
+                    showAlert("Product added to cart successfully.");
+                }
+            } catch (SQLException e) {
+                showAlert("Error adding item to cart: " + e.getMessage());
             }
         } else {
             showAlert("Please select a product");
         }
     }
 
+    private int getCurrentQuantityInCart(String barcode) {
+        return currentCart.getItems().stream()
+                .filter(item -> item.getBarcode().equals(barcode))
+                .mapToInt(ShoppingItem::getQuantity)
+                .sum();
+    }
+
+    private ShoppingItem findExistingCartItem(String barcode) {
+        return currentCart.getItems().stream()
+                .filter(item -> item.getBarcode().equals(barcode))
+                .findFirst()
+                .orElse(null);
+    }
+
+
+
     private void updateCartTable() {
-        cartTable.setItems(FXCollections.observableArrayList(currentCart.getItems()));
+        // Clear the existing items in the TableView
+        cartTable.getItems().clear();
+
+        // Add all items from the currentCart to the TableView
+        cartTable.getItems().addAll(currentCart.getItems());
+
+        // Refresh the TableView to reflect the changes
+        cartTable.refresh();
+
         updateTotal();
     }
+
 
     private void updateTotal() {
         BigDecimal total = currentCart.getTotalPrice();
@@ -293,15 +341,30 @@ public class ShoppingSessionController implements Initializable {
         }
     }
 
-    private int showQuantityDialog() {
+
+    private int showQuantityDialog(int maxQuantity) {
         TextInputDialog dialog = new TextInputDialog("1");
         dialog.setTitle("Enter Quantity");
-        dialog.setHeaderText("Enter the quantity for the selected product");
+        dialog.setHeaderText("Enter the quantity for the selected product (Max: " + maxQuantity + ")");
         dialog.setContentText("Quantity:");
 
-        return dialog.showAndWait()
-                .map(Integer::parseInt)
-                .orElse(0);
+        while (true) {
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                try {
+                    int quantity = Integer.parseInt(result.get());
+                    if (quantity > 0 && quantity <= maxQuantity) {
+                        return quantity;
+                    } else {
+                        showAlert("Please enter a valid quantity between 1 and " + maxQuantity);
+                    }
+                } catch (NumberFormatException e) {
+                    showAlert("Please enter a valid number");
+                }
+            } else {
+                return 0; // User cancelled the dialog
+            }
+        }
     }
 
     private void showAlert(String message) {
@@ -430,10 +493,12 @@ public class ShoppingSessionController implements Initializable {
             products = productService.getAllProducts();
         }
         productTable.setItems(FXCollections.observableArrayList(products));
+        productTable.refresh(); // This will trigger the cellValueFactory to recalculate stock
         if (products.isEmpty()) {
             showAlert("No products available for the selected supermarket");
         }
     }
+
 
     @FXML
     private void cancelShopping() {

@@ -833,7 +833,7 @@ public class SupermarketManagementController implements Initializable {
 
     private void showAddProductToSupermarketDialog(Supermarket supermarket) {
         Dialog<Void> dialog = new Dialog<>();
-        dialog.setTitle("Add Product to " + supermarket.getName());
+        dialog.setTitle("Add/Update Product in " + supermarket.getName());
 
         ComboBox<Product> productComboBox = new ComboBox<>();
         productComboBox.setItems(FXCollections.observableArrayList(products));
@@ -845,7 +845,7 @@ public class SupermarketManagementController implements Initializable {
         VBox content = new VBox(10, new Label("Product:"), productComboBox, new Label("Quantity:"), quantityField);
         dialog.getDialogPane().setContent(content);
 
-        ButtonType addButtonType = new ButtonType("Add", ButtonBar.ButtonData.OK_DONE);
+        ButtonType addButtonType = new ButtonType("Add/Update", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(addButtonType, ButtonType.CANCEL);
 
         dialog.setResultConverter(dialogButton -> {
@@ -854,12 +854,12 @@ public class SupermarketManagementController implements Initializable {
                 if (selectedProduct != null) {
                     try {
                         int quantity = Integer.parseInt(quantityField.getText());
-                        productService.addProductToSupermarket(selectedProduct.getId(), supermarket.getId(), quantity);
-                        showAlert("Success", "Product added to supermarket successfully.", Alert.AlertType.INFORMATION);
+                        productService.addOrUpdateProductInSupermarket(selectedProduct.getId(), supermarket.getId(), quantity);
+                        showAlert("Success", "Product added/updated in supermarket successfully.", Alert.AlertType.INFORMATION);
                     } catch (NumberFormatException e) {
                         showAlert("Invalid Input", "Please enter a valid quantity.", Alert.AlertType.ERROR);
                     } catch (SQLException e) {
-                        showAlert("Error", "Failed to add product to supermarket: " + e.getMessage(), Alert.AlertType.ERROR);
+                        showAlert("Error", "Failed to add/update product in supermarket: " + e.getMessage(), Alert.AlertType.ERROR);
                     }
                 }
             }
